@@ -1,0 +1,174 @@
+
+/* SETUP */
+var map = L.map('map',{
+    tms: false
+}).setView([42.755942, -72.8092041],3);
+
+var PersonIcon = L.Icon.extend({
+    options: {
+        iconSize: [
+            60, 60
+        ],
+        className: 'circular',
+        popupAnchor:  [0, -30],
+    }
+});
+
+// load up the background tile layer
+var Stamen_Watercolor = L.tileLayer('http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg', {}).addTo(map);
+
+// all the facemarkers will go into one layer
+var facemarkers = L.layerGroup();
+
+// function to add markers
+var addMarker = function(options) {
+  var icon = new PersonIcon({iconUrl: options.iconUrl});
+  var marker = L.marker(options.lat_long, {icon: icon, url: options.url, name: options.name})
+  facemarkers.addLayer(marker.addTo(map).bindPopup(options.message));
+}
+
+
+
+/* END SETUP */
+
+// START SECTION FOR MARKERS
+/* TODO: Add yourself to the map here! */
+//
+// copy the following lines and change then as needed
+// look up the lat/long and change that as well.
+
+
+addMarker({
+  name: 'Froggy',
+  iconUrl: 'images/froggy.jpg',
+  url: '//giphy.com/embed/QCpqmkDHVNde',
+  message: 'Come visit me in Costa Rica!',
+  lat_long: [9.6660971,-85.0621176],
+});
+
+
+addMarker({
+  name: 'Tim',
+  iconUrl: 'images/tim_round.jpg',
+  url: '//www.zingweb.com',
+  message: 'Hiking in the High Sierras!',
+  lat_long: [37.2320967,-118.8578716],
+});
+
+addMarker({
+  name: 'Kate',
+  iconUrl: 'images/kate.jpg',
+  url: 'images/kate-page.pdf',
+  message: 'I love snow!',
+  lat_long: [44.227173,-71.747907],
+});
+
+addMarker({
+  name: 'Theo',
+  iconUrl: 'images/Theo.jpg',
+  url: 'images/TheoSite.pdf',
+  message: 'I like poptarts!',
+  lat_long: [42.373616,-71.109734],
+});
+
+addMarker({
+  name: 'Lillian',
+  iconUrl: 'images/lillian.jpg',
+  url: '//www.zhaolillian.com/about-me-dali',
+  message: 'MIA in Argentina',
+  lat_long: [40.6084, -75.4902],
+});
+
+addMarker({
+  name: 'Luisa',
+  iconUrl: 'images/luisa.jpg',
+  url: '//vluisa.github.io/mapWebsite/',
+  message: 'I was born here!',
+  lat_long: [4.444676,-75.242438],
+});
+
+addMarker({
+  name: 'Pat',
+  iconUrl: 'images/pat.jpg',
+  url: '//www.patrickxu.com',
+  message: 'Exploring Yellowstone!',
+  lat_long: [44.797716, -110.434368],
+});
+
+addMarker({
+  name: 'Kyle',
+  iconUrl: 'images/kyle.jpg',
+  url: '//kyledotterrer.me',
+  message: 'Building a Fire!',
+  lat_long: [44.763057,-85.620632],
+});
+
+addMarker({
+  name: 'Nitasha',
+  iconUrl: 'images/Nitasha.jpg',
+  url: '//nitashakochar.github.io/nitashakochar.me/',
+  message: 'Anybody wanna watch Sherlock?',
+  lat_long: [40.792044,-73.539848],
+});
+
+addMarker({
+  name: 'John',
+  iconUrl: 'images/john.jpg',
+  url: '//www.johnkotz.us',
+  message: 'Dartmouth, born and raised',
+  lat_long: [43.790618, -72.194191],
+});
+
+addMarker({
+  name: 'Jessie',
+  iconUrl: 'images/jessie.JPG',
+  url: '//jessieanderson.me',
+  message: 'expelliarmus',
+  lat_long: [41.478049, -81.357181],
+});
+
+addMarker({
+  name: 'Will',
+  iconUrl: 'images/will.jpg',
+  url: '//www.wjkaufman.com',
+  message: 'Favorite ski spot',
+  lat_long: [37.938491, -107.810185],
+});
+
+addMarker({
+  name: 'Ijemma',
+  iconUrl: 'images/ijemma.jpg',
+  url: '//ijemmao.github.io/ijemmao.me',
+  message: 'Drinking some boba tea',
+  lat_long: [37.9492282, -121.735452],
+});
+
+//END SECTION FOR MARKERS
+
+/* DO NOT MODIFY BELOW THIS LINE */
+
+// this sets up popups and clicks on all the markers
+facemarkers.eachLayer(function(marker) {
+  marker.on('mouseover', function (e) {
+    e.target.openPopup();
+  });
+  marker.on('mouseout', function (e) {
+    e.target.closePopup();
+  });
+  marker.on('click', function (e) {
+      eModal.iframe({url: e.target.options.url, title: e.target.options.name, size: 'lg'});
+  });
+});
+
+
+// setup the info control layer
+var info = L.control();
+
+info.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+    this._div.innerHTML = '<a href="https://github.com/dali-lab/"><h4>DALI 17W</h4></a><p><a href="https://github.com/dali-lab/17W-mappy">code on github</p></a>';
+    return this._div;
+};
+
+
+info.addTo(map);
