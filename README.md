@@ -1,4 +1,6 @@
-# DALI mappy challenge
+# CS 52 Short Assignment 1
 
-The DALI mappy challenge (https://github.com/dali-lab/mappy/blob/gh-pages/docs/dev_details.md) is an introductory challenge for new members of the Dartmouth Digital Arts Leadership and Innovation Lab (http://dali.dartmouth.edu/). As a part of the challenge, new members are tasked with created an introductory "about me" website to place on the DALI "map".
+This repo is an updated version of a personal website that I made for myself when I did the DALI mappy challenge (https://github.com/dali-lab/mappy/blob/gh-pages/docs/dev_details.md) during 17W. 
+
+When I registered the domain danahhan.me again for this short assignment using an email alias, it brought back my personal website that had expired in the past. Enjoy!
 
